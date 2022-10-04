@@ -1,0 +1,53 @@
+% Add "\usepackage{xcolor}"
+% define some basic colors
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+
+\setmonofont{inconsolata}
+
+\lstset{
+% listings sonderzeichen (for german weirdness)
+literate={ö}{{\"o}}1
+{ä}{{\"a}}1
+{ü}{{\"u}}1,
+basicstyle=\tiny\ttfamily,                    % very small code
+breaklines=true,                              % break long lines
+commentstyle=\itshape\color{green!50!black},  % comments are green
+keywordstyle=[1]\color{blue!80!black},        % instructions are blue
+keywordstyle=[2]\color{orange!80!black},      % sections/other directives are orange
+keywordstyle=[3]\color{red!50!black},         % registers are red
+stringstyle=\color{mauve},                    % strings are from the telekom
+identifierstyle=\color{teal},                 % user declared addresses are teal
+frame=l,                                      % black line on the left side of code
+language=C++,                   % all code is RISC-V
+tabsize=4,                                    % indent tabs with 4 spaces
+showstringspaces=false                        % do not replace spaces with weird underlines
+}
+
+\lstdefinestyle{mystyle}
+{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=none,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=none
+}
+
+\lstset{style=mystyle,language=C++}
