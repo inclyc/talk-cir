@@ -2,6 +2,21 @@
 
 \begin{frame}
     \frametitle{高层次信息的缺失}
+    语言特殊的信息对于高级语言实现来讲是必须的。Rust 编译器就实现了 HIR + MIR
+    \footnote{可能现在还有新的THIR,但我不了解相关情况，只是想说这里有多级IR的例子}
+    的多层结构。作用域、循环表达、类型结构是做语法分析必要的信息，但
+    lowering 到 LLVM IR 之后失去了这些信息。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth]{images/rust-flow.png}
+        \caption{Rust 编译器使用两级IR - HIR + MIR\cite{rustir}}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{高层次信息的缺失}
     现代语言绝大部分编译器前端都设计了自己的 IR ， FIR (Flang 的 IR ) 就是基于
     MLIR完成的。
     \begin{figure}[h]
