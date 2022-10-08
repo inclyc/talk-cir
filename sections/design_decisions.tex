@@ -1,0 +1,17 @@
+\section{Design Decision}
+
+\begin{frame}
+    \frametitle{Why MLIR?}
+
+    MLIR 给出了一套非常完善的测试框架、Pass 管理，我们可以用 Pass 来实现关于
+    CIR 的各个分析和 Lowering。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.2\textwidth]{images/mlir-logo.png}
+        \caption{MLIR Logo}
+    \end{figure}
+
+    事实上，FIR (Flang 使用的 IR) 就是通过 MLIR 构建的。
+
+\end{frame}
