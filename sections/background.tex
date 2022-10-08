@@ -41,3 +41,26 @@ void func2(int i) {
         \end{minipage}
     \end{center}
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Lifetime}
+    % TODO: 参考文献
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \begin{lstlisting}[caption=生命周期分析与垂悬引用]
+int *p0() {
+  int *p = nullptr;
+  {
+    int x = 0;
+    p = &x;
+    *p = 42;
+  }        // note: pointee 'x' invalidated at end of scope
+  *p = 42; // warning: use of invalid pointer 'p'
+  return p;
+}
+            \end{lstlisting}
+
+        \end{minipage}
+    \end{center}
+
+\end{frame}
