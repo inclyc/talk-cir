@@ -1,6 +1,18 @@
 \section{ClangIR提出的背景}
 
 \begin{frame}
+    \frametitle{高层次信息的缺失}
+    现代语言绝大部分编译器前端都设计了自己的 IR ， FIR (Flang 的 IR ) 就是基于
+    MLIR完成的。
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\textwidth]{images/compiler-ir.png}
+        \caption{各大语言编译器前端使用 IR 的情况}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
     \frametitle{Clang 数据流分析诊断}
 
     Clang 的数据流相关诊断信息目前是在前端部分实现的。LLVM IR 更类似与一种三地
