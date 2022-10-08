@@ -1,0 +1,24 @@
+\section{ClangIR提出的背景}
+
+\begin{frame}
+    \frametitle{Clang 数据流分析诊断}
+
+    Clang 的数据流相关诊断信息目前是在前端部分实现的。LLVM IR 更类似与一种三地
+    址中间码，大量的信息会在 lower 到 LLVM IR 的路径中丢失。
+
+    \begin{table}
+        \centering
+        \begin{tabular}{cc}
+            \toprule
+            已有的问题                             & 问题描述                                             \\
+            \midrule
+            \texttt{\_\_builtin\_constant\_p} & 与 LLVM 行为实际不一致\cite{aaronballman-constantp-2019} \\
+            无穷递归                              & missing-warnings\cite{aaronballman-infrec-2019}  \\
+            Lifetime                          & 难以实现                                             \\
+            高层次的代码变换建议                        & 难以实现                                             \\
+            \bottomrule
+        \end{tabular}
+        \caption{目前 Clang AST \& CFG 遇到的问题}
+    \end{table}
+    \label{tab:clang_diag}
+\end{frame}
