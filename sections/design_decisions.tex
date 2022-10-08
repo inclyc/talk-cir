@@ -15,3 +15,54 @@
     事实上，FIR (Flang 使用的 IR) 就是通过 MLIR 构建的。
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{高级语义}
+    \begin{center}
+        \begin{minipage}{0.5\textwidth}
+            \begin{lstlisting}[caption=一个简单的生命周期分析例子]
+int *may_explode() {
+    int *p = nullptr;
+    {
+    int x = 0;
+    p = &x;
+    *p = 42;
+    }
+    *p = 42; // oops...
+    ...
+}
+            \end{lstlisting}
+        \end{minipage}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{对应的 CIR}
+    \begin{center}
+        \begin{minipage}{1.0\textwidth}
+            \begin{lstlisting}
+func @may_explode() -> !cir.ptr<i32> {
+%p_addr = cir.alloca !cir.ptr<i32>, cir.ptr <!cir.ptr<i32>>, ["p", cinit]
+...
+cir.scope {
+    // int x = 0;
+    %x_addr = cir.alloca i32, cir.ptr <i32>, ["x", cinit]
+    // p = &x;
+    cir.store %x_addr, %p_addr : !cir.ptr<i32>, cir.ptr <!cir.ptr<i32>>
+    // *p = 42
+    cir.store %forty_two, %x_addr : i32, cir.ptr <i32>
+    %p = cir.load deref %p_addr : cir.ptr <!cir.ptr<i32>>, !cir.ptr<i32>
+} // 'x' lifetime ends, 'p' is bad.
+// *p = 42
+%forty_two = cir.cst(42 : i32)
+%dead_x_addr = cir.load deref %p_addr : cir.ptr <!cir.ptr<i32>>, !cir.ptr<i32>
+// attempt to store 42 to the dead address
+cir.store %forty_two, %dead_x_addr : i32, cir.ptr <i32>
+}
+            \end{lstlisting}
+        \end{minipage}
+    \end{center}
+
+\end{frame}
