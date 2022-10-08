@@ -22,3 +22,25 @@
     \end{table}
     \label{tab:clang_diag}
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Infinite Recursive}
+    \begin{center}
+        \begin{minipage}{0.7\textwidth}
+            \begin{lstlisting}[caption=无限递归诊断\cite{lyc-infrec-2019}]
+void func1(int i) { /* no warning ?? */
+    if (i || !i)
+        func1(i);
+}
+
+void func2(int i) {
+    if (i > 0 || i <= 0) /* tautological! */
+       func2(i);
+}
+            \end{lstlisting}
+        \end{minipage}
+    \end{center}
+
+
+
+\end{frame}
