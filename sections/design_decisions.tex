@@ -66,3 +66,33 @@ cir.store %forty_two, %dead_x_addr : i32, cir.ptr <i32>
     \end{center}
 
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{结构化控制流}
+
+    CIR 目前的代码生成基本上是假设控制流都是结构化的。\texttt{goto} 语句现在之
+    被有限的支持。
+
+    过程级别的 \texttt{goto} 语句可以在进一步 lowering 的过程中实现。
+
+    \begin{table}
+        \centering
+        \begin{tabular}{cc}
+            \toprule
+            控制语句              & 对应的 CIR             \\
+            \midrule
+            \texttt{return}   & \texttt{cir.return} \\
+            \texttt{break}    & \texttt{cir.yield}  \\
+            \texttt{continue} & \texttt{cir.yield}  \\
+            \bottomrule
+        \end{tabular}
+        \caption{CPP中的控制流语句和在CIR中的对应表达}
+        \label{tab:control-statements}
+    \end{table}
+
+    事实上控制流是否结构化有待进一步研究，RFC里@efriedma-quic指出，可以用一种混
+    合的表达（也就是混合结构化的和未结构化的）来表示这个控制流，不一定要用完全
+    结构化的方式。
+
+\end{frame}
