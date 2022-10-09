@@ -1,5 +1,20 @@
 \section{现状}
 
+\begin{frame}[fragile]
+    \frametitle{开发进度与流程 -- LLVM Incubator}
+
+    当前所有的源代码都在 \texttt{llvm/clangir} 这个仓库中。上面有若干提交，不定
+    期 rebase 到 \texttt{llvm/llvm-project} 的主线分支上。
+
+    \vspace{2em}
+    \begin{lstlisting}[caption=启用ClangIR目前需要的编译指令]
+        cmake /* .. */ \
+        -DLLVM_ENABLE_PROJECTS="clang;mlir;cir;"
+    \end{lstlisting}
+
+
+\end{frame}
+
 \begin{frame}
     \frametitle{Clang CodeGen}
 
