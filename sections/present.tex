@@ -1,0 +1,20 @@
+\section{现状}
+
+\begin{frame}
+    \frametitle{Clang CodeGen}
+
+    Clang IR 目前没有被用于真正的 CodeGen 流程，而是只用于静态分析。
+
+    开发者的计划是
+    \begin{center}
+        Clang AST $\rightarrow$ Clang IR (Multi-Level) $\rightarrow$ LLVM IR
+    \end{center}
+
+    用于 CodeGen 主要有如下一些挑战：
+
+    \begin{enumerate}
+        \item 复用 CodeGen 代码，保证 ABI 兼容
+        \item 编译时间
+        \item C/C++ 生态事实上是相当复杂的，CIR是否可以支持 Open\{MP,Acc,CL\} ?
+    \end{enumerate}
+\end{frame}
