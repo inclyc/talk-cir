@@ -33,3 +33,21 @@
         \item C/C++ 生态事实上是相当复杂的，CIR是否可以支持 Open\{MP,Acc,CL\} ?
     \end{enumerate}
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Clang Diagnostics}
+
+    长期以来，Clang的诊断信息都是由 TableGen 生成的。目前 CIR 使用的诊断信息是
+    由 MLIR 提供的。
+
+    \vspace{1em}
+
+    \begin{lstlisting}[caption=LifetimeCheckPass 中输出诊断信息相关的代码]
+  // Looks like we found a bad path leading to this deference point,
+  // diagnose it.
+  StringRef varName = getVarNameFromValue(addr);
+  auto D = emitWarning(loadOp.getLoc());
+  D << "use of invalid pointer '" << varName << "'";
+    \end{lstlisting}
+
+\end{frame}
