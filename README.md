@@ -1,5 +1,7 @@
 # Talk - Clang IR
 
+![preview](assets/images/preview.png)
+
 
 ## License
 
